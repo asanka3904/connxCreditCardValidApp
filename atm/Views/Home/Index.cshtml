@@ -1,0 +1,70 @@
+﻿@model List<CreditCardModel>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    card type
+                </th>
+                <th>
+                    card no
+                </th>
+                <th>
+                   Status
+                </th>
+                
+                
+            </tr>
+        </thead>
+        <tbody>
+            @if(Model!=null){
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.cardType
+                    </td>
+                    <td>
+                        @item.cardNo
+                    </td>
+                    <td>
+                        @if(@item.cardStatus==true){
+                            <p>valid</p>
+                        }else{
+                            <p>Invalid</p>
+                        }
+                        
+                    </td>
+                   
+                    
+                </tr>
+            }
+            }
+        </tbody>
+    </table>
+
+    <button style="padding:5px;color:black;background-color:aqua" id="btnAddField">Add Field</button>
+
+    @using (Html.BeginForm("ValidateCard", "Home", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div style="margin:5px" id="fields"></div>
+
+        <button style="padding:5px;color:black;background-color:aqua">Submit</button>
+    }
+</div>
+
+
+       
+       
+
+
+       
+        
